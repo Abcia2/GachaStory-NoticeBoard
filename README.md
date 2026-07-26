@@ -1,0 +1,1 @@
+# GachaStory-NoticeBoard
