@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generatore JSON da CSV/Manuale</title>
+    
+    <!-- Caricamento Tailwind CSS e configurazione colori custom -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#769826',
+                            light: '#A1CB35',
+                            yellow: '#FFDE4E',
+                            orange: '#FF9D4D'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts e icone -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #f9fbf9;
+            color: #333;
+        }
+        /* Custom scrollbar per la tabella */
+        .table-container::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .table-container::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+            border-radius: 4px;
+        }
+        .table-container::-webkit-scrollbar-thumb {
+            background: #A1CB35; 
+            border-radius: 4px;
+        }
+        .table-container::-webkit-scrollbar-thumb:hover {
+            background: #769826; 
+        }
+        textarea {
+            resize: none;
+            overflow: hidden;
+            min-height: 44px;
+        }
+        textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #A1CB35;
+        }
+        .input-key:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #FF9D4D;
+        }
+        /* Toast notification animation */
+        @keyframes slideIn {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .toast {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans">
+
+    <header class="bg-brand-dark text-white p-6 shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-file-code text-3xl text-brand-yellow"></i>
+                <h1 class="text-2xl font-bold">App Generatore JSON</h1>
+            </div>
+            
+            <div class="flex items-center gap-3 bg-white/10 p-3 rounded-lg border border-white/20">
+                <label for="versionInput" class="font-semibold text-sm">Versione Notice:</label>
+                <input type="text" id="versionInput" placeholder="es. 1.0.5" 
+                    class="px-3 py-1.5 rounded text-gray-800 font-mono focus:outline-none focus:ring-2 focus:ring-brand-yellow w-24">
+                
+                <!-- Badge di avviso se la versione non è cambiata -->
+                <div id="versionWarning" class="hidden items-center gap-2 bg-brand-yellow text-amber-900 text-xs font-bold px-2 py-1 rounded">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Versione non cambiata!
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow w-full max-w-7xl mx-auto p-4 md:p-6 flex flex-col gap-6">
+        
+        <!-- Toolbar superiore -->
+        <div class="flex flex-wrap items-center justify-between gap-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+            <div class="flex flex-wrap items-center gap-3">
+                <label class="cursor-pointer bg-brand-light hover:bg-brand-dark text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-file-import"></i> Carica CSV
+                    <input type="file" id="csvFileInput" accept=".csv" class="hidden">
+                </label>
+                
+                <button onclick="addRow()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-colors border border-gray-200 flex items-center gap-2">
+                    <i class="fa-solid fa-plus"></i> Aggiungi Riga
+                </button>
+                
+                <button onclick="addColumn()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-colors border border-gray-200 flex items-center gap-2">
+                    <i class="fa-solid fa-language"></i> Aggiungi Lingua
+                </button>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3">
+                <button onclick="exportData('copy')" class="bg-brand-yellow hover:bg-yellow-400 text-yellow-900 px-5 py-2 rounded-lg font-bold transition-colors shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-copy"></i> Copia JSON
+                </button>
+                <button onclick="exportData('download')" class="bg-brand-dark hover:bg-brand-light text-white px-5 py-2 rounded-lg font-bold transition-colors shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-download"></i> Scarica JSON
+                </button>
+            </div>
+        </div>
+
+        <!-- Tabella Editor -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex-grow flex flex-col">
+            <div class="table-container overflow-x-auto overflow-y-auto max-h-[60vh]">
+                <table class="w-full text-left border-collapse" id="editorTable">
+                    <thead class="bg-gray-50 sticky top-0 z-10 border-b border-gray-200">
+                        <tr id="tableHeaderRow">
+                            <th class="p-3 w-16 text-center text-gray-400">Azioni</th>
+                            <th class="p-3 font-semibold text-gray-700 min-w-[200px]">Chiave (Field Key)</th>
+                            <!-- Le colonne delle lingue verranno generate dinamicamente qui -->
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="divide-y divide-gray-100">
+                        <!-- Le righe verranno generate dinamicamente qui -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="p-4 bg-gray-50 text-sm text-gray-500 border-t border-gray-200">
+                <i class="fa-solid fa-circle-info text-brand-light mr-1"></i> Se un campo è vuoto, verrà usato il testo in "en". I ritorni a capo nel testo verranno salvati come <code>\n</code> nel JSON.
+            </div>
+        </div>
+    </main>
+
+    <!-- Contenitore Notifiche (Toast) -->
+    <div id="toastContainer" class="fixed bottom-6 right-6 flex flex-col gap-3 z-50"></div>
+
+    <script>
+        // Stato dell'applicazione
+        let state = {
+            languages: ['en', 'it'], // default languages
+            rows: [
+                { key: 'title', values: { en: 'Welcome', it: 'Benvenuto' } },
+                { key: 'text', values: { en: 'Hello/nWorld', it: 'Ciao\nMondo' } }
+            ],
+            lastVersion: localStorage.getItem('lastNoticeVersion') || ''
+        };
+
+        const versionInput = document.getElementById('versionInput');
+        const versionWarning = document.getElementById('versionWarning');
+        const tableHeaderRow = document.getElementById('tableHeaderRow');
+        const tableBody = document.getElementById('tableBody');
+        const csvFileInput = document.getElementById('csvFileInput');
+
+        // Inizializzazione al caricamento della pagina
+        window.onload = () => {
+            versionInput.value = state.lastVersion;
+            checkVersionWarning();
+            renderTable();
+        };
+
+        // Gestione Versione
+        versionInput.addEventListener('input', checkVersionWarning);
+
+        function checkVersionWarning() {
+            const current = versionInput.value.trim();
+            if (current !== '' && current === state.lastVersion) {
+                versionWarning.classList.remove('hidden');
+                versionWarning.classList.add('flex');
+            } else {
+                versionWarning.classList.add('hidden');
+                versionWarning.classList.remove('flex');
+            }
+        }
+
+        // Funzione principale per renderizzare la tabella in base allo stato
+        function renderTable() {
+            // Pulisci header esistenti eccetto i primi due (Azioni, Chiave)
+            while (tableHeaderRow.children.length > 2) {
+                tableHeaderRow.removeChild(tableHeaderRow.lastChild);
+            }
+
+            // Aggiungi colonne lingua all'header
+            state.languages.forEach((lang, index) => {
+                const th = document.createElement('th');
+                th.className = 'p-3 font-semibold text-gray-700 min-w-[250px] relative group';
+                
+                // Formatta il codice lingua in minuscolo visivamente e nello stato (Regola 1)
+                const lowerLang = lang.toLowerCase();
+                if(lang !== lowerLang) state.languages[index] = lowerLang;
+
+                th.innerHTML = `
+                    <div class="flex items-center justify-between bg-brand-light/20 px-3 py-1 rounded border border-brand-light/40">
+                        <span class="uppercase font-bold text-brand-dark">${lowerLang}</span>
+                        ${lowerLang !== 'en' ? `<button onclick="removeColumn('${lowerLang}')" class="text-gray-400 hover:text-brand-orange transition-colors opacity-0 group-hover:opacity-100"><i class="fa-solid fa-trash-can"></i></button>` : '<span class="text-xs text-gray-500 font-normal">Fallback</span>'}
+                    </div>
+                `;
+                tableHeaderRow.appendChild(th);
+            });
+
+            // Pulisci corpo tabella
+            tableBody.innerHTML = '';
+
+            // Renderizza righe
+            state.rows.forEach((row, rowIndex) => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-gray-50/50 transition-colors group';
+
+                // Colonna Azioni (Elimina)
+                const tdAction = document.createElement('td');
+                tdAction.className = 'p-3 text-center align-top';
+                tdAction.innerHTML = `
+                    <button onclick="removeRow(${rowIndex})" class="mt-2 text-gray-300 hover:text-brand-orange transition-colors">
+                        <i class="fa-solid fa-circle-minus text-xl"></i>
+                    </button>
+                `;
+                tr.appendChild(tdAction);
+
+                // Colonna Chiave
+                const tdKey = document.createElement('td');
+                tdKey.className = 'p-3 align-top border-r border-gray-100';
+                tdKey.innerHTML = `
+                    <input type="text" value="${row.key}" oninput="updateRowKey(${rowIndex}, this.value)" 
+                        placeholder="nome_campo" class="input-key w-full p-2 border border-gray-200 rounded text-sm font-mono bg-gray-50 focus:bg-white transition-all">
+                `;
+                tr.appendChild(tdKey);
+
+                // Colonne Lingue
+                state.languages.forEach(lang => {
+                    const tdLang = document.createElement('td');
+                    tdLang.className = 'p-3 align-top border-r border-gray-100 last:border-0';
+                    
+                    const value = row.values[lang] || '';
+                    
+                    // Creiamo una textarea auto-espandibile
+                    const textarea = document.createElement('textarea');
+                    textarea.className = 'w-full p-2 border border-gray-200 rounded text-sm bg-white transition-all';
+                    textarea.placeholder = lang === 'en' ? 'Testo...' : 'Traduzione (usa \'en\' se vuoto)...';
+                    textarea.value = value;
+                    
+                    // Event listeners per auto-resize e aggiornamento stato
+                    textarea.addEventListener('input', function() {
+                        autoResize(this);
+                        updateCellValue(rowIndex, lang, this.value);
+                    });
+                    
+                    // Inizializza altezza al mount
+                    setTimeout(() => autoResize(textarea), 0);
+
+                    tdLang.appendChild(textarea);
+                    tr.appendChild(tdLang);
+                });
+
+                tableBody.appendChild(tr);
+            });
+        }
+
+        // Helper per auto-resize textarea
+        function autoResize(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = (textarea.scrollHeight) + 'px';
+        }
+
+        // --- FUNZIONI DI MODIFICA STATO ---
+
+        function updateRowKey(index, newKey) {
+            state.rows[index].key = newKey;
+        }
+
+        function updateCellValue(rowIndex, lang, value) {
+            if (!state.rows[rowIndex].values) {
+                state.rows[rowIndex].values = {};
+            }
+            state.rows[rowIndex].values[lang] = value;
+        }
+
+        function addRow() {
+            state.rows.push({ key: '', values: {} });
+            renderTable();
+            // Scroll in basso
+            const container = document.querySelector('.table-container');
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function removeRow(index) {
+            state.rows.splice(index, 1);
+            renderTable();
+        }
+
+        function addColumn() {
+            let newLang = prompt("Inserisci la sigla della nuova lingua (es. 'es', 'fr', 'de'):");
+            if (newLang) {
+                newLang = newLang.trim().toLowerCase(); // Regola 1
+                if (newLang && !state.languages.includes(newLang)) {
+                    state.languages.push(newLang);
+                    renderTable();
+                } else if (state.languages.includes(newLang)) {
+                    showToast("Lingua già presente!", "error");
+                }
+            }
+        }
+
+        function removeColumn(langToRemove) {
+            if (langToRemove === 'en') {
+                showToast("Non puoi rimuovere la lingua inglese (fallback).", "error");
+                return;
+            }
+            if (confirm(`Sei sicuro di voler rimuovere la colonna della lingua '${langToRemove}'?`)) {
+                state.languages = state.languages.filter(l => l !== langToRemove);
+                // Pulisci i valori dalle righe per tenere lo stato pulito
+                state.rows.forEach(row => {
+                    if (row.values && row.values[langToRemove] !== undefined) {
+                        delete row.values[langToRemove];
+                    }
+                });
+                renderTable();
+            }
+        }
+
+        // --- GESTIONE CSV ---
+        csvFileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const text = event.target.result;
+                processCSV(text);
+                csvFileInput.value = ''; // Reset input
+            };
+            reader.readAsText(file);
+        });
+
+        // Parser CSV custom robusto (gestisce virgolette, a capo interni, ecc.)
+        function parseCSVString(str) {
+            const arr = [];
+            let quote = false;
+            let row = 0, col = 0, c = 0;
+            for (; c < str.length; c++) {
+                let cc = str[c], nc = str[c+1];
+                arr[row] = arr[row] || [];
+                arr[row][col] = arr[row][col] || '';
+
+                if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+                if (cc == '"') { quote = !quote; continue; }
+                if (cc == ',' && !quote) { ++col; continue; }
+                if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
+                if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+                if (cc == '\r' && !quote) { ++row; col = 0; continue; }
+                arr[row][col] += cc;
+            }
+            return arr;
+        }
+
+        function processCSV(csvText) {
+            const data = parseCSVString(csvText);
+            if (!data || data.length < 2) {
+                showToast("CSV vuoto o formato non valido.", "error");
+                return;
+            }
+
+            const headers = data[0].map(h => h.trim());
+            // Il primo header è la chiave, il resto sono lingue
+            if (headers.length < 2) {
+                showToast("Il CSV deve avere almeno la colonna chiave e una lingua.", "error");
+                return;
+            }
+
+            const parsedLangs = [];
+            for (let i = 1; i < headers.length; i++) {
+                let l = headers[i].toLowerCase();
+                parsedLangs.push(l);
+            }
+
+            // Assicuriamoci che 'en' esista, se no lo forziamo in prima posizione
+            let finalLangs = [...new Set(['en', ...parsedLangs])];
+            
+            const newRows = [];
+            for (let i = 1; i < data.length; i++) {
+                const rowData = data[i];
+                if (!rowData || rowData.length === 0 || !rowData[0].trim()) continue; // Salta righe vuote o senza chiave
+                
+                const key = rowData[0].trim();
+                const values = {};
+                
+                for (let j = 1; j < headers.length; j++) {
+                    if (j < rowData.length) {
+                        const langKey = headers[j].toLowerCase();
+                        // Conserviamo eventuali \n reali inseriti da CSV
+                        values[langKey] = rowData[j];
+                    }
+                }
+                newRows.push({ key, values });
+            }
+
+            // Aggiorna stato
+            state.languages = finalLangs;
+            state.rows = newRows;
+            renderTable();
+            showToast("CSV caricato con successo!", "success");
+        }
+
+        // --- GENERAZIONE JSON (Applicazione Regole) ---
+
+        function generateJSONObj() {
+            const currentVersion = versionInput.value.trim() || '1.0.0';
+            
+            // Struttura root
+            const output = {
+                version: currentVersion
+            };
+
+            // Processa ogni lingua nello stato
+            state.languages.forEach(langCode => {
+                output[langCode] = {};
+                
+                state.rows.forEach(row => {
+                    const key = row.key.trim();
+                    if (!key) return; // Salta se la chiave è vuota
+                    
+                    let val = row.values[langCode];
+                    
+                    // Regola 3: Fallback logic
+                    if (val === undefined || val === null || val.trim() === '') {
+                        // Cerca in inglese se non siamo già in inglese
+                        if (langCode !== 'en') {
+                            val = row.values['en'];
+                        }
+                        
+                        // Se anche l'inglese è vuoto o null, stringa vuota
+                        if (val === undefined || val === null || val.trim() === '') {
+                            val = "";
+                        }
+                    }
+
+                    // Regola 2: Gestione dei ritorni a capo (\n)
+                    // Il replace converte eventuali stringhe letterali "/n" immesse dall'utente
+                    // in veri ritorni a capo in memoria, così JSON.stringify esporterà "\n".
+                    // Anche i veri ritorni a capo (\n da textarea) verranno gestiti correttamente.
+                    if (typeof val === 'string') {
+                        val = val.replace(/\/n/g, '\n'); 
+                    }
+
+                    output[langCode][key] = val;
+                });
+            });
+
+            return { jsonObj: output, version: currentVersion };
+        }
+
+        function exportData(action) {
+            const currentVersion = versionInput.value.trim();
+            if (!currentVersion) {
+                showToast("Inserisci un numero di versione prima di esportare.", "error");
+                versionInput.focus();
+                return;
+            }
+
+            // Salva l'ultima versione in localStorage
+            localStorage.setItem('lastNoticeVersion', currentVersion);
+            state.lastVersion = currentVersion;
+            checkVersionWarning();
+
+            const { jsonObj } = generateJSONObj();
+            const jsonString = JSON.stringify(jsonObj, null, 2);
+
+            // Regola 4: Download e Copia
+            if (action === 'copy') {
+                copyToClipboard(jsonString);
+            } else if (action === 'download') {
+                downloadJSONFile(jsonString, currentVersion);
+            }
+        }
+
+        function copyToClipboard(text) {
+            // Metodo compatibile anche in iframe/ambienti restrittivi
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";  // Evita lo scrolling
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showToast("JSON copiato negli appunti!", "success");
+                } else {
+                    showToast("Impossibile copiare. Riprova.", "error");
+                }
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+                showToast("Errore durante la copia.", "error");
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function downloadJSONFile(content, version) {
+            const blob = new Blob([content], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `notice_v${version.replace(/\./g, '_')}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast("Download avviato!", "success");
+        }
+
+        // Sistema di Notifiche UI
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            
+            let bgClass = type === 'success' ? 'bg-brand-dark' : 'bg-brand-orange';
+            let icon = type === 'success' ? 'fa-check-circle' : 'fa-circle-exclamation';
+            
+            toast.className = `toast flex items-center gap-3 px-5 py-3 rounded-lg shadow-lg text-white font-medium ${bgClass}`;
+            toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${message}</span>`;
+            
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(100%)';
+                toast.style.transition = 'all 0.3s ease';
+                setTimeout(() => {
+                    if (container.contains(toast)) container.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
