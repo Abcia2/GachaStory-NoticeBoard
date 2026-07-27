@@ -6,7 +6,10 @@
     "Image_Link": "https://abcia2.github.io/GachaStory-NoticeBoard/Images/Notice_Image_v3_0_0.png",
     "Image_Description": "Try the new game mode 📿",
     "Link": "https://life-in-gacha-life-website.web.app/",
-    "Link_Button_Text": "New trailer"
+    "Link_Button_Text": "New trailer",
+    "Video_Link": "https://youtu.be/wFTa97G_A60",
+    "Video_Image": "https://abcia2.github.io/GachaStory-NoticeBoard/Images/Video_Image_001.png",
+    "Video_Text": "New Video 💜"
   },
   "it": {
     "Title": "Benvenuta Versione 3.0 ✨",
@@ -14,7 +17,10 @@
     "Image_Link": "https://abcia2.github.io/GachaStory-NoticeBoard/Images/Notice_Image_v3_0_0.png",
     "Image_Description": "Scopri la nuova modalità di gioco 📿",
     "Link": "https://life-in-gacha-life-website.web.app/",
-    "Link_Button_Text": "Nuovo trailer"
+    "Link_Button_Text": "Nuovo trailer",
+    "Video_Link": "https://youtu.be/wFTa97G_A61",
+    "Video_Image": "https://abcia2.github.io/GachaStory-NoticeBoard/Images/Video_Image_001.png",
+    "Video_Text": "Nuovo video 💜"
   },
   "fr": {
     "Title": "Bienvenue dans la Version 3.0 ✨",
@@ -22,15 +28,21 @@
     "Image_Link": "https://abcia2.github.io/GachaStory-NoticeBoard/Images/Notice_Image_v3_0_0.png",
     "Image_Description": "Essayez le nouveau mode de jeu 📿",
     "Link": "https://life-in-gacha-life-website.web.app/",
-    "Link_Button_Text": "Nouvelle bande-annonce"
+    "Link_Button_Text": "Nouvelle bande-annonce",
+    "Video_Link": "https://youtu.be/wFTa97G_A62",
+    "Video_Image": "https://abcia2.github.io/GachaStory-NoticeBoard/Images/Video_Image_001.png",
+    "Video_Text": "Nouvelle vidéo 💜"
   },
   "es": {
-    "Title": "Bienvenida Versión 3.0 ✨",
+    "Title": "Bienvenida Versión 3.0 ",
     "Body": "Gacha Story ha sido rehecho desde cero. Ahora tiene un mejor aspecto, nueva jugabilidad y, lo más importante, la historia ha sido reescrita.\n\nHice este juego cuando todavía era un niño, ahora soy un adulto. En los últimos 5 años he aprendido mucho, he terminado la escuela y ahora estoy listo para comenzar un nuevo capítulo empezando con este juego.\nPodría pasar horas hablando de todos los cambios que he hecho en el juego y la historia, pero no creo que eso sea entretenido. Sin embargo, quiero dar las gracias a todos los que apreciaron mis creaciones y a los que nunca dejaron de pedirme que continuara durante esta pausa del último año.\n\nEmpezamos de nuevo 💖",
     "Image_Link": "https://abcia2.github.io/GachaStory-NoticeBoard/Images/Notice_Image_v3_0_0.png",
     "Image_Description": "Prueba el nuevo modo de juego 📿",
     "Link": "https://life-in-gacha-life-website.web.app/",
-    "Link_Button_Text": "Nuevo tráiler"
+    "Link_Button_Text": "Nuevo tráiler",
+    "Video_Link": "https://youtu.be/wFTa97G_A63",
+    "Video_Image": "https://abcia2.github.io/GachaStory-NoticeBoard/Images/Video_Image_001.png",
+    "Video_Text": "Nuevo vídeo 💜"
   },
   "pt": {
     "Title": "Bem-vinda Versão 3.0 ✨",
@@ -38,7 +50,10 @@
     "Image_Link": "https://abcia2.github.io/GachaStory-NoticeBoard/Images/Notice_Image_v3_0_0.png",
     "Image_Description": "Experimente o novo modo de jogo 📿",
     "Link": "https://life-in-gacha-life-website.web.app/",
-    "Link_Button_Text": "Novo trailer"
+    "Link_Button_Text": "Novo trailer",
+    "Video_Link": "https://youtu.be/wFTa97G_A64",
+    "Video_Image": "https://abcia2.github.io/GachaStory-NoticeBoard/Images/Video_Image_001.png",
+    "Video_Text": "Vídeo novo 💜"
   },
   "ru": {
     "Title": "Добро пожаловать в Версию 3.0 ✨",
@@ -46,7 +61,10 @@
     "Image_Link": "https://abcia2.github.io/GachaStory-NoticeBoard/Images/Notice_Image_v3_0_0.png",
     "Image_Description": "Попробуйте новый игровой режим 📿",
     "Link": "https://life-in-gacha-life-website.web.app//",
-    "Link_Button_Text": "Новый трейлер"
+    "Link_Button_Text": "Новый трейлер",
+    "Video_Link": "https://youtu.be/wFTa97G_A65",
+    "Video_Image": "https://abcia2.github.io/GachaStory-NoticeBoard/Images/Video_Image_001.png",
+    "Video_Text": "Новое видео 💜"
   },
   "de": {
     "Title": "Willkommen bei Version 3.0 ✨",
@@ -54,7 +72,10 @@
     "Image_Link": "https://abcia2.github.io/GachaStory-NoticeBoard/Images/Notice_Image_v3_0_0.png",
     "Image_Description": "Probiere den neuen Spielmodus aus 📿",
     "Link": "https://life-in-gacha-life-website.web.app/",
-    "Link_Button_Text": "Neuer Trailer"
+    "Link_Button_Text": "Neuer Trailer",
+    "Video_Link": "https://youtu.be/wFTa97G_A66",
+    "Video_Image": "https://abcia2.github.io/GachaStory-NoticeBoard/Images/Video_Image_001.png",
+    "Video_Text": "Neues Video 💜"
   },
   "ar": {
     "Title": "مرحبًا بالإصدار 3.0 ✨",
@@ -62,6 +83,9 @@
     "Image_Link": "https://abcia2.github.io/GachaStory-NoticeBoard/Images/Notice_Image_v3_0_0.png",
     "Image_Description": "جرب وضع اللعب الجديد 📿",
     "Link": "https://life-in-gacha-life-website.web.app/",
-    "Link_Button_Text": "مقطع دعائي جديد"
+    "Link_Button_Text": "مقطع دعائي جديد",
+    "Video_Link": "https://youtu.be/wFTa97G_A67",
+    "Video_Image": "https://abcia2.github.io/GachaStory-NoticeBoard/Images/Video_Image_001.png",
+    "Video_Text": "فيديو جديد 💜"
   }
 }
