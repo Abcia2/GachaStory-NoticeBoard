@@ -1,9 +1,5 @@
 {
   "members": [],
-  "monthly": [
-    { "name": "Pink Lightning", "lastPayment": "2026-09-10T00:00:00.000Z" }
-  ],
-  "oneTime": [
-    { "name": "Stormy", "lastPayment": "2026-09-25T00:00:00.000Z" }
-  ]
+  "monthly": ["Pink Lightning"],
+  "oneTime": ["Stormy"]
 }
