@@ -13,7 +13,7 @@
     {
       "title": "Day_1_First_Scene_2",
       "tags": "",
-      "body": "<<Background Class_B>> <<Sound School_Bell>>\n<<Name Empty>> TEEEST [i]The school bell is ringing[/i]\n[[Day_1_Lunch]]",
+      "body": "<<Background Class_B>> <<Sound School_Bell>>\n<<Name Empty>> [i]The school bell is ringing[/i]\n[[Day_1_Lunch]]",
       "position": {
         "x": 80,
         "y": 80
@@ -23,7 +23,7 @@
     {
       "title": "Day_1_Lunch",
       "tags": "",
-      "body": "<<Background Class_B>>\n<<Music The_Beginning_of_a_Friendship>>\n<<Name Ava>> <<Ava 3_3_2_0_0_8>> Finally… Class is over!\n<<Name Ava>> <<Ava 1_3_1_0_0_0>> Time to have lunch…\n<<Name Ava>> <<Ava 20_12_3_1_0_0>> Bea's not here today, so I guess I'm eating alone…\n[[Day_1_Lunch_2]]",
+      "body": "<<Background Class_B>>\n<<Music The_Beginning_of_a_Friendship>>\n<<Name Ava>> <<Ava 3_3_2_0_0_8>> TESTTTT Finally… Class is over!\n<<Name Ava>> <<Ava 1_3_1_0_0_0>> Time to have lunch…\n<<Name Ava>> <<Ava 20_12_3_1_0_0>> Bea's not here today, so I guess I'm eating alone…\n[[Day_1_Lunch_2]]",
       "position": {
         "x": 232,
         "y": 40
