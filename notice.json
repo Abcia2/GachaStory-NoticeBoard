@@ -1,5 +1,5 @@
 {
-  "version": "3.0.4",
+  "version": "3.0.5",
   "en": {
     "Title": "Welcome Version 3.0 ✨",
     "Body": "Gacha Story has been remade from the ground up. It now has a better look, new gameplay and most importantly the story has been rewritten.\n\nI made this game when I was still a kid, I'm an adult now. In the past 5 years I've learn a lot, finished school and I'm now ready to begin a new chapter starting with this game.\nI could spend hours talking about all the changes I've made to the game and the story, but I don't think that would be entertaining. Though, I want to thank all of you who appreciated my creations and those who never stopped asking me to continue during this past year break.\n\nWe're starting again 💖",
@@ -9,7 +9,9 @@
     "Link_Button_Text": "Dev-Log Video",
     "Video_Link": "https://youtu.be/TlqA1ftgI3U?si=JFiucyZIinZgpOG6",
     "Video_Image": "https://raw.githubusercontent.com/Abcia2/GachaStory-NoticeBoard/main/Images/Video_Image_001.png",
-    "Video_Text": "New Video 💜"
+    "Video_Text": "New Video 💜",
+    "Current_Version": "3.0.1",
+    "Update_Text": "• Week 2 of the story\n• Patch Downloads\n• Fixes..."
   },
   "it": {
     "Title": "Benvenuta Versione 3.0 ✨",
@@ -20,7 +22,9 @@
     "Link_Button_Text": "Video Dev-Log",
     "Video_Link": "https://youtu.be/TlqA1ftgI3U?si=JFiucyZIinZgpOG7",
     "Video_Image": "https://raw.githubusercontent.com/Abcia2/GachaStory-NoticeBoard/main/Images/Video_Image_001.png",
-    "Video_Text": "Nuovo video 💜"
+    "Video_Text": "Nuovo video 💜",
+    "Current_Version": "3.0.1",
+    "Update_Text": "• Settimana 2 della storia \n• Download delle patch \n• Correzioni..."
   },
   "fr": {
     "Title": "Bienvenue dans la Version 3.0 ✨",
@@ -31,7 +35,9 @@
     "Link_Button_Text": "Vidéo dev-log",
     "Video_Link": "https://youtu.be/TlqA1ftgI3U?si=JFiucyZIinZgpOG8",
     "Video_Image": "https://raw.githubusercontent.com/Abcia2/GachaStory-NoticeBoard/main/Images/Video_Image_001.png",
-    "Video_Text": "Nouvelle vidéo 💜"
+    "Video_Text": "Nouvelle vidéo 💜",
+    "Current_Version": "3.0.1",
+    "Update_Text": "• Semaine 2 de l'histoire \n• Téléchargements des correctifs \n• Corrections..."
   },
   "es": {
     "Title": "Bienvenida Versión 3.0 ✨",
@@ -42,7 +48,9 @@
     "Link_Button_Text": "Vídeo del devlog",
     "Video_Link": "https://youtu.be/TlqA1ftgI3U?si=JFiucyZIinZgpOG9",
     "Video_Image": "https://raw.githubusercontent.com/Abcia2/GachaStory-NoticeBoard/main/Images/Video_Image_001.png",
-    "Video_Text": "Nuevo vídeo 💜"
+    "Video_Text": "Nuevo vídeo 💜",
+    "Current_Version": "3.0.1",
+    "Update_Text": "• Semana 2 de la historia \n• Descargas de parches \n• Correcciones..."
   },
   "pt": {
     "Title": "Bem-vinda Versão 3.0 ✨",
@@ -53,7 +61,9 @@
     "Link_Button_Text": "Vídeo do Dev-Log",
     "Video_Link": "https://youtu.be/TlqA1ftgI3U?si=JFiucyZIinZgpOG10",
     "Video_Image": "https://raw.githubusercontent.com/Abcia2/GachaStory-NoticeBoard/main/Images/Video_Image_001.png",
-    "Video_Text": "Vídeo novo 💜"
+    "Video_Text": "Vídeo novo 💜",
+    "Current_Version": "3.0.1",
+    "Update_Text": "• Semana 2 da história \n• Downloads de patches \n• Correções..."
   },
   "ru": {
     "Title": "Добро пожаловать в Версию 3.0 ✨",
@@ -64,7 +74,9 @@
     "Link_Button_Text": "Видео Dev-Log",
     "Video_Link": "https://youtu.be/TlqA1ftgI3U?si=JFiucyZIinZgpOG11",
     "Video_Image": "https://raw.githubusercontent.com/Abcia2/GachaStory-NoticeBoard/main/Images/Video_Image_001.png",
-    "Video_Text": "Новое видео 💜"
+    "Video_Text": "Новое видео 💜",
+    "Current_Version": "3.0.1",
+    "Update_Text": "• Неделя 2 истории \n• Загрузки патчей \n• Исправления..."
   },
   "de": {
     "Title": "Willkommen bei Version 3.0 ✨",
@@ -75,7 +87,9 @@
     "Link_Button_Text": "Dev-Log-Video",
     "Video_Link": "https://youtu.be/TlqA1ftgI3U?si=JFiucyZIinZgpOG12",
     "Video_Image": "https://raw.githubusercontent.com/Abcia2/GachaStory-NoticeBoard/main/Images/Video_Image_001.png",
-    "Video_Text": "Neues Video 💜"
+    "Video_Text": "Neues Video 💜",
+    "Current_Version": "3.0.1",
+    "Update_Text": "• Woche 2 der Story \n• Patch-Downloads \n• Fehlerbehebungen..."
   },
   "ar": {
     "Title": "مرحبًا بالإصدار 3.0 ✨",
@@ -86,6 +100,8 @@
     "Link_Button_Text": "فيديو سجل التطوير",
     "Video_Link": "https://youtu.be/TlqA1ftgI3U?si=JFiucyZIinZgpOG13",
     "Video_Image": "https://raw.githubusercontent.com/Abcia2/GachaStory-NoticeBoard/main/Images/Video_Image_001.png",
-    "Video_Text": "فيديو جديد 💜"
+    "Video_Text": "فيديو جديد 💜",
+    "Current_Version": "3.0.1",
+    "Update_Text": "• الأسبوع 2 من القصة \n• تنزيلات التحديثات\n • إصلاحات..."
   }
 }
