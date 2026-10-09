@@ -13,7 +13,7 @@
     {
       "title": "Day_1_First_Scene_2",
       "tags": "",
-      "body": "<<Background Class_B>> <<Sound School_Bell>>\n<<Name Empty>> [i]The school bell is ringing[/i]\n[[Day_1_Lunch]]",
+      "body": "<<Background Class_B>> <<Sound School_Bell>>\n<<Name Empty>> TEEEST [i]The school bell is ringing[/i]\n[[Day_1_Lunch]]",
       "position": {
         "x": 80,
         "y": 80
