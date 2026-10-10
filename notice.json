@@ -1,5 +1,5 @@
 {
-  "version": "3.0.5",
+  "version": "3.0.6",
   "en": {
     "Title": "Welcome Version 3.0 ✨",
     "Body": "Gacha Story has been remade from the ground up. It now has a better look, new gameplay and most importantly the story has been rewritten.\n\nI made this game when I was still a kid, I'm an adult now. In the past 5 years I've learn a lot, finished school and I'm now ready to begin a new chapter starting with this game.\nI could spend hours talking about all the changes I've made to the game and the story, but I don't think that would be entertaining. Though, I want to thank all of you who appreciated my creations and those who never stopped asking me to continue during this past year break.\n\nWe're starting again 💖",
@@ -11,7 +11,9 @@
     "Video_Image": "https://raw.githubusercontent.com/Abcia2/GachaStory-NoticeBoard/main/Images/Video_Image_001.png",
     "Video_Text": "New Video 💜",
     "Current_Version": "3.0.1",
-    "Update_Text": "• Week 2 of the story\n• Patch Downloads\n• Fixes..."
+    "Update_Text": "• Week 2 of the story\n• Patch Downloads\n• Fixes...",
+    "Ads_Break_Min": "60",
+    "Ads_Break_Max": "120"
   },
   "it": {
     "Title": "Benvenuta Versione 3.0 ✨",
@@ -24,7 +26,9 @@
     "Video_Image": "https://raw.githubusercontent.com/Abcia2/GachaStory-NoticeBoard/main/Images/Video_Image_001.png",
     "Video_Text": "Nuovo video 💜",
     "Current_Version": "3.0.1",
-    "Update_Text": "• Settimana 2 della storia \n• Download delle patch \n• Correzioni..."
+    "Update_Text": "• Settimana 2 della storia \n• Download delle patch \n• Correzioni...",
+    "Ads_Break_Min": "60",
+    "Ads_Break_Max": "120"
   },
   "fr": {
     "Title": "Bienvenue dans la Version 3.0 ✨",
@@ -37,7 +41,9 @@
     "Video_Image": "https://raw.githubusercontent.com/Abcia2/GachaStory-NoticeBoard/main/Images/Video_Image_001.png",
     "Video_Text": "Nouvelle vidéo 💜",
     "Current_Version": "3.0.1",
-    "Update_Text": "• Semaine 2 de l'histoire \n• Téléchargements des correctifs \n• Corrections..."
+    "Update_Text": "• Semaine 2 de l'histoire \n• Téléchargements des correctifs \n• Corrections...",
+    "Ads_Break_Min": "60",
+    "Ads_Break_Max": "120"
   },
   "es": {
     "Title": "Bienvenida Versión 3.0 ✨",
@@ -50,7 +56,9 @@
     "Video_Image": "https://raw.githubusercontent.com/Abcia2/GachaStory-NoticeBoard/main/Images/Video_Image_001.png",
     "Video_Text": "Nuevo vídeo 💜",
     "Current_Version": "3.0.1",
-    "Update_Text": "• Semana 2 de la historia \n• Descargas de parches \n• Correcciones..."
+    "Update_Text": "• Semana 2 de la historia \n• Descargas de parches \n• Correcciones...",
+    "Ads_Break_Min": "60",
+    "Ads_Break_Max": "120"
   },
   "pt": {
     "Title": "Bem-vinda Versão 3.0 ✨",
@@ -63,7 +71,9 @@
     "Video_Image": "https://raw.githubusercontent.com/Abcia2/GachaStory-NoticeBoard/main/Images/Video_Image_001.png",
     "Video_Text": "Vídeo novo 💜",
     "Current_Version": "3.0.1",
-    "Update_Text": "• Semana 2 da história \n• Downloads de patches \n• Correções..."
+    "Update_Text": "• Semana 2 da história \n• Downloads de patches \n• Correções...",
+    "Ads_Break_Min": "60",
+    "Ads_Break_Max": "120"
   },
   "ru": {
     "Title": "Добро пожаловать в Версию 3.0 ✨",
@@ -76,7 +86,9 @@
     "Video_Image": "https://raw.githubusercontent.com/Abcia2/GachaStory-NoticeBoard/main/Images/Video_Image_001.png",
     "Video_Text": "Новое видео 💜",
     "Current_Version": "3.0.1",
-    "Update_Text": "• Неделя 2 истории \n• Загрузки патчей \n• Исправления..."
+    "Update_Text": "• Неделя 2 истории \n• Загрузки патчей \n• Исправления...",
+    "Ads_Break_Min": "60",
+    "Ads_Break_Max": "120"
   },
   "de": {
     "Title": "Willkommen bei Version 3.0 ✨",
@@ -89,7 +101,9 @@
     "Video_Image": "https://raw.githubusercontent.com/Abcia2/GachaStory-NoticeBoard/main/Images/Video_Image_001.png",
     "Video_Text": "Neues Video 💜",
     "Current_Version": "3.0.1",
-    "Update_Text": "• Woche 2 der Story \n• Patch-Downloads \n• Fehlerbehebungen..."
+    "Update_Text": "• Woche 2 der Story \n• Patch-Downloads \n• Fehlerbehebungen...",
+    "Ads_Break_Min": "60",
+    "Ads_Break_Max": "120"
   },
   "ar": {
     "Title": "مرحبًا بالإصدار 3.0 ✨",
@@ -102,6 +116,8 @@
     "Video_Image": "https://raw.githubusercontent.com/Abcia2/GachaStory-NoticeBoard/main/Images/Video_Image_001.png",
     "Video_Text": "فيديو جديد 💜",
     "Current_Version": "3.0.1",
-    "Update_Text": "• الأسبوع 2 من القصة \n• تنزيلات التحديثات\n • إصلاحات..."
+    "Update_Text": "• الأسبوع 2 من القصة \n• تنزيلات التحديثات\n • إصلاحات...",
+    "Ads_Break_Min": "60",
+    "Ads_Break_Max": "120"
   }
 }
